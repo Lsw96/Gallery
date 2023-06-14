@@ -15,6 +15,7 @@ LAYOUT ↓
 .favorite .item .item-wrapper .item-wrap > figure { position: relative; width: 100%; overflow: hidden; line-height: 0; }
 .favorite .item .item-wrapper .item-wrap > figure > img { width: 100%; transform: scale(1.2); transition: transform .5s, filter .8s; filter: grayscale(100%); }
 .favorite .item .item-wrapper .item-wrap > figure > img:hover { transform: scale(1); filter: grayscale(0); }
+.favorite .item .item-wrapper .item-wrap > figure > img:active { filter: saturate(150%); }
 .favorite .item .item-wrapper .item-wrap > figure > figcaption { position: absolute; top: 0; right: 0; padding: 1em 2em; font-size: var(--font-medium); background: rgba(0, 0, 0, .5); letter-spacing: 1.25px; }
 .favorite .item .item-wrapper .item-wrap > p { display: inline-block; width: 90%; margin: .5em; font-size: var(--font-large); color: var(--text-disabled); line-height: normal; text-align: justify; }
 .favorite .item .item-wrapper .item-wrap > p span { display: block; color: var(--color-green); }

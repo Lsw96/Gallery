@@ -33,13 +33,13 @@ img { pointer-events: inherit; }
     --font-noto: 'Noto Sans', sans-serif;
     --font-nanum: 'Nanum Pen Script', cursive;
     /* font-size */
-    --font-title: 10rem;
-    --font-xx-large: 6.4rem;
-    --font-x-large: 4.8rem;
-    --font-large: 3.2rem;
-    --font-medium: 2.4rem;
-    --font-small: 1.8rem;
-    --font-micro: 1.6rem;
+    --font-title: max(10rem, min(5vw, 5rem));
+    --font-xx-large: max(6.4rem, min(5vw, 3.2rem));
+    --font-x-large: max(4.8rem, min(5vw, 2.4rem));
+    --font-large: max(3.2rem, min(5vw, 1.6rem));
+    --font-medium: max(2.4rem, min(5vw, 1.2rem));
+    --font-small: max(1.8rem, min(5vw, 0.9rem));
+    --font-micro: max(1.6rem, min(5vw, 0.8rem));
     /* color */
     --color-black: #131314;
     --color-white: #E1DFE9;
