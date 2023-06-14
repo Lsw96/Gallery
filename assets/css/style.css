@@ -1,5 +1,6 @@
 html { font-size: 62.5%; }
 body { font-family: 'Noto Sans', sans-serif; box-sizing: border-box; background-color: var(--color-black); }
+body::-webkit-scrollbar { display: none; }
 html,body { width: 100%; height: 100%; overflow-x:hidden; }
 .wrapper { width: 100%; max-width: 1920px; min-height: 100%; margin: auto; }
 .filter { position: relative; width: 100%; background-color: var(--color-black); }
@@ -14,15 +15,15 @@ html,body { width: 100%; height: 100%; overflow-x:hidden; }
 /*=========================================================
 VISUAL ↓
 ========================================================= */
-.visual { position: relative; width: 100vw; max-width: 1920px; height: 100vh; background: linear-gradient(to top, #131314,#3F0606); pointer-events: none; }
+.visual { position: relative; width: 100vw; max-width: 1920px; height: 100vh; max-height: 1080px; background: linear-gradient(to top, #131314,#3F0606); pointer-events: none; }
 .visual .background #circle_blue { filter: url(#wavy); animation: circleblue 10s linear infinite; width: 100%; height: 100%; }
 .visual .background #circle { filter: url(#wavy); animation: circle 15s linear infinite; width: 100%; height: 100%; }
 @keyframes circleblue { to { transform: rotate(180deg); filter: url(#wavy) hue-rotate(180deg); } }
 @keyframes circle { to { transform: rotate(360deg); filter: url(#wavy) hue-rotate(180deg); } }
-.visual .background #bgs { width: 100%; bottom: 0; }
+.visual .background #bgs { max-width: 100%; height: auto; bottom: 0; }
 /* text ↓=========================================================*/
-.visual .vl-text { overflow: auto; margin-left: 3em; }
-.visual .vl-text > h1 { overflow: hidden; position: relative; z-index: 2; margin-top: 2em; width: 100%; max-width: 260px; min-width: 150px; height: 80px; font-size: var(--font-medium); font-weight: 400; background-color: var(--color-green); color: var(--color-white); text-align: center; line-height: 80px; }
+.visual .vl-text { overflow: hidden; margin-left: 3em; }
+.visual .vl-text > h1 { position: relative; z-index: 2; margin-top: 2em; width: 100%; max-width: 260px; min-width: 150px; height: 80px; font-size: var(--font-medium); font-weight: 400; background-color: var(--color-green); color: var(--color-white); text-align: center; line-height: 80px; }
 .visual .vl-text > h1::before { content: ''; position: absolute; top: 0; z-index: -1; left: -80px; width: 80%; height: 100%; background: linear-gradient(to bottom, #44B58A, rgba(71, 145, 117, 0)); transform: skewX(-50deg); }
 .visual .vl-text #title { bottom: 15%; left: 2.5em; width: 100%; max-width: 32.725%; }
 .visual .vl-text #sub-title { bottom: 20%; right: 4%; width: 100%; max-width: 30%; }
@@ -41,18 +42,22 @@ VISUAL ↓
 /*=========================================================
 HEADER ↓
 ========================================================= */
-header { position: sticky; z-index: 9999; top: 0; width: 100%; height: 80px; background-color: #000; display: flex; justify-content: space-between; align-items: center; color: var(--text-text); }
+header { position: sticky; z-index: 9999; top: 0; max-width: 1920px; width: 100%; height: 80px; background-color: #000; display: flex; align-items: center; color: var(--text-text); }
 header.fixed { position: fixed; top: 0; width: 100%; }
-header h1 { margin-left: 3em; }
+header h1 { margin-left: 3em }
 header h1 a { display: block; }
-header nav ul { list-style: none; display: flex; position: relative; }
-header nav li a { position: relative; z-index: 1; overflow: hidden; display: block; width: 156px; height: 48px; margin-right: 2.5em; transition: color .4s linear; font-family: var(--font-gugi); font-size: var(--font-small); color: var(--text-text); background-color: var(--color-black); border: 1px solid var(--color-deepgreen); border-radius: 5px; text-decoration: none; text-align: center; line-height: 48px; }
-header nav li a:hover { color: var(--text-label); }
-header nav li a:active { color: var(--text-disabled); }
-header nav li a::before { content: ''; position: absolute; z-index: -1; top: 0; left: -50px; width: 0; height: 100%; background: linear-gradient(to left, var(--color-deepgreen), var(--color-green)); transform: skewX(35deg); transition: .5s; transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94); filter: blur(2px); }
-header nav li a:hover::before { width: 150%; }
-header nav li a.active { color: var(--text-disabled); background-color: var(--color-green); }
-header nav li a > span.hello { color: var(--text-label); }
+header h1 a img { display: block; width: 250px; }
+header nav { margin-left: auto; }
+header nav ul { display: flex; position: relative; list-style: none; }
+header nav ul li { margin-right: 2em; width: 100%; }
+header nav ul li a { display: block; overflow: hidden; position: relative; z-index: 1; width: 156px; height: 100%; line-height: 48px; transition: color .4s linear; font-family: var(--font-gugi); font-size: var(--font-small); color: var(--text-text); background-color: var(--color-black); border: 1px solid var(--color-deepgreen); border-radius: 5px; text-decoration: none; text-align: center; }
+header nav ul li a:active { color: var(--text-disabled); }
+header nav ul li a:hover { color: var(--text-label); }
+header nav ul li a::before { content: ''; position: absolute; z-index: -1; top: 0; left: -50px; width: 0; height: 100%; background: linear-gradient(to left, var(--color-deepgreen), var(--color-green)); transform: skewX(35deg); transition: .5s; transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94); filter: blur(2px); }
+header nav ul li a:hover::before { width: 150%; }
+header .mob-a ul li a:hover::before { width: 200%; }
+header nav ul li a.active { color: var(--text-disabled); background-color: var(--color-green); }
+header nav ul li a > span.hello { color: var(--text-label); }
 /* mobile tab menu ↓=========================================================*/
 header .mobile { position: relative; }
 header input[id="menuicon"] { display: none; }
@@ -68,7 +73,7 @@ header input[id="menuicon"]:checked ~ .mobile .menubtn span:nth-child(3) { botto
 header input[id="menuicon"]:checked ~ .container .sidebar { right: 0; }
 /* mobile content ↓=========================================================*/
 .container { position: relative; z-index: 10; }
-.container .sidebar { position: fixed; top: 0; right: -100vw; width: 100vw; height: 100%; z-index: 10; margin-top: 80px; background: linear-gradient(to right, #000, #420707); transition: .35s; }
+.container .sidebar { position: fixed; top: 0; right: -100vw; width: 100vw; height: 100%; z-index: 10; background: linear-gradient(to right, #000, #420707); transition: .35s; }
 .container .sidebar .tabs { position: relative; width: 100%; height: 100%; background: url(../img/svg/mobile_tab_img.svg) no-repeat center right / 50%; }
 .container .sidebar .tabs ul { position: absolute; top: 20%; left: 15%; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; list-style-type: none; }
 .container .sidebar .tabs ul li { margin: .5em; font-family: var(--font-gugi); font-size: var(--font-x-large); }
@@ -79,11 +84,11 @@ header input[id="menuicon"]:checked ~ .container .sidebar { right: 0; }
 /*=========================================================
 MAIN ↓
 =========================================================*/
-main { position: relative; overflow: hidden; z-index: 1; height: 100vh; background: linear-gradient(to top,#3F0606, #000); }
+main { position: relative; overflow: hidden; z-index: 1; height: 100vh; max-height: 1080px; background: linear-gradient(to top,#3F0606, #000); }
 main::before, main::after { position: absolute; top: 0; left: 0; content: ''; width: 100%; height: 100%; mix-blend-mode: overlay; filter: brightness(60%) contrast(150%); }
 main::before { background: #000; filter: url(#noise); width: 83.2%; margin-left: 8.5%; }
 main::after { background: url(../img/texture.png) no-repeat center center / 100%; }
-main .main-text { position: absolute; top: 0; left: 0; width: 100%; height: 100%; margin-left: 4em; background-image: url(../img/svg/main_img01.svg), url(../img/svg/Bubble.svg); background-repeat: no-repeat; background-position: bottom right, top right; background-size: 45%, 50%; }
+main .main-text { position: absolute; top: 0; left: 0; width: 100%; height: 100%; padding-top: 2.5%; margin-left: 4em; background-image: url(../img/svg/main_img01.svg), url(../img/svg/Bubble.svg); background-repeat: no-repeat; background-position: bottom right, top right; background-size: 45%, 50%; }
 main .main-text .tag { font-family: var(--font-Space); font-size: var(--font-medium); color: var(--color-white); }
 main .main-text .tag > span { float: left; margin: 8em 0 0; letter-spacing: 0.14em; width: 200px; height: 48px; background-color: var(--color-deepgreen); border-radius: 5px; text-align: center; line-height: 48px; }
 main .main-text .tag h1.main-title { clear: both; float: left; font-size: var(--font-title); font-weight: 500; letter-spacing: -0.05em; width: 100%; max-width: 877px; line-height: 1.25; margin: 0.24em 0; }
@@ -101,49 +106,59 @@ main .main-text .tag ul.social .button:hover .icon span { color: var(--color-whi
 /*=========================================================
 FOOTER ↓
 ========================================================= */
-footer { overflow: hidden; position: relative; z-index: 9999; bottom: 0; width: 100%; height: 60px; background: #000 center bottom / 100%; }
-footer p { position: absolute; width: 100%; color: var(--text-text); font-size: var(--font-micro); text-align: center; line-height: 3.75; }
+footer { overflow: hidden; position: relative; z-index: 9999; bottom: 0; width: 100%; height: 60px; display: flex; justify-content: center; align-items: center; text-align: center; background: #000 center bottom / 100%; }
+footer p { position: absolute; width: 100%; color: var(--text-text); font-size: var(--font-micro); }
 /*=========================================================
 MEDIA QUERY ↓
 ========================================================= */
 @media only screen and (min-width: 1350px) {
     .favorite .item h1 { margin: 1em 0 0.5em 0.4em; }
+    header input[id="menuicon"] + label { display: none; }
     .favorite .item .item-wrapper .item-wrap { width: 32.33333%; }
     main .main-text .tag ul.social .button { margin: 0 15px; }
+    header .mob-a { display: none; }
+    main .main-text { background-size: 45%, 50%; }
 }
 @media only screen and (max-width: 1350px) {
     html { font-size: 51.5625%; }
-    header { padding-top: 1em;  }
-    header input[id="menuicon"] + label { display: none; }
-    .visual .background #bgs { height: 50%; }
-    header > h1 img { width: 100%; max-width: 250px; min-width: 100px; }
-    header nav li a { margin-right: 1em; font-size: 1.4em; width: 132px; letter-spacing: .5px; }
-    header nav li a.active { margin-left: 1em; }
+    header nav { margin-left: auto; display: none; }
+    header nav ul { display: flex; position: relative; list-style: none; }
+    header nav ul li { margin-right: 2em; width: 100%; font-family: var(--font-gugi); font-size: var(--font-micro); color: var(--text-text); }
+    header nav ul li a { display: block; overflow: hidden; position: relative; z-index: 1; width: 68px; height: 100%; display: flex; align-items: center; justify-content: center; transition: color .4s linear; background-color: var(--color-black); border: 1px solid var(--color-deepgreen); border-radius: 5px; text-decoration: none; }
+    header .mob-a { margin-left: auto; display: block; }
+    header .mob-a ul { display: flex; position: relative; list-style: none; }
+    header .mob-a ul li { margin-right: 1.5em; width: 100%; font-family: var(--font-gugi); font-size: var(--font-micro); color: var(--text-text); }
+    header .mob-a ul li a { display: block; overflow: hidden; position: relative; z-index: 1; width: 78px; height: 100%; display: flex; align-items: center; justify-content: center; transition: color .4s linear; background-color: var(--color-black); border: 1px solid var(--color-deepgreen); border-radius: 5px; text-decoration: none; }
+    /* .visual .background #bgs { height: 60%; } */
+    main .main-text { background-size: 45%, 60%; }
+    main .main-text .tag ul.social .button { margin: 0 15px; }
     .favorite .item h1 { margin: 1em 0 0.5em 0.3em; }
     .favorite .item .item-wrapper .item-wrap { width: 32.33333%; }
-    main .main-text .tag ul.social .button { margin: 0 15px; }
+    
 }
-
-
+@media only screen and (max-width: 1000px) { main .main-text { background-size: 65%, 65%; } }
 /* MOBILE ↓=========================================================*/
 @media only screen and (max-width: 805px) {
     html { font-size: 46.875%; }
+    header { height: 80px; display: block; }
     header > h1 { width: 100%; top: -12px; padding-top: 12px; }
-    header > h1 img { margin-right: auto; }
+    header > h1 img { margin-right: auto; margin-top: 14px; }
     header nav ul { display: none; }
-    header .mobile .menubtn { display: block; }
-
-    .visual .background #bgs { height: 50%; }
-    .visual .vl-text > h1 { max-width: 180px; min-width: 150px; height: 60px; line-height: 60px; }
+    header .mob-a { display: none; }
+    header .mobile .menubtn { display: block; margin-top: -18px; }
+    .visual .vl-text > h1 { width: 100%; max-width: 180px; min-width: 150px; height: 60px; line-height: 60px; }
     .visual .vl-text #title { bottom: 20%; max-width: 40%; }
     .visual .vl-text #sub-title { max-width: 50%; }
-    .visual .vl-text .circle li { top: 7%; }
-    .visual .vl-text .circle li.darkred { background-color: #210606; right: 5%; }
-    .visual .vl-text .circle li.maroon { background-color: #300707; right: 13%; }
-    .visual .vl-text .circle li.red { background-color: #3a0707; right: 22%; }
+    .visual .vl-text .circle { display: none; }
 
-    main .main-text .tag h1.main-title { font-size: 7.5rem; text-shadow: 3px 3px 3px rgba(0, 0, 0, .5); }
-    main .main-text { background-size: 60%, 80%; }
+    main .main-text .tag h1.main-title { font-size: max(4.5rem, min(10vw,9.5rem)); text-shadow: 3px 3px 3px rgba(0, 0, 0, .5); }
+    main .main-text { background-size: 80%, 80%; }
     main .main-text .tag > p { float: left; width: 100%; margin-bottom: 1em; line-height: 1.25; }
     main .main-text .tag ul.social { flex-direction: column; gap: 1.5em; }
+}
+@media only screen and (max-width: 432px) {
+    .visual .vl-text > h1 { display: none; }
+    .visual .vl-text .vl-text-box { width: 100%; height: 100%; }
+    .visual .vl-text .vl-text-box #title { display: block; max-width: 90%; top: 20%; transform: translateY(-20%); }
+    .visual .vl-text .vl-text-box #sub-title { display: block; max-width: 90%; bottom: 20%; transform: translateY(20%); }
 }
